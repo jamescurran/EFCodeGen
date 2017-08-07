@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>MetaDataBrowser.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>MyMeta</AssemblyName>
+    <AssemblyOriginatorKeyFile>MyMeta.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MyMeta</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG;ENTERPRISExxxxx</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Column.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Columns.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CursorTypeEnum.cs" />
+    <Compile Include="DataTypeEnum.cs" />
+    <Compile Include="FieldAttributeEnum.cs" />
+    <Compile Include="IMyMetaPluginExt.cs" />
+    <Compile Include="FileDbDriver.cs" />
+    <Compile Include="IMyMetaPluginContext.cs" />
+    <Compile Include="IMyMetaPlugin.cs" />
+    <Compile Include="Interfaces\Field.cs" />
+    <Compile Include="Interfaces\FieldCollection.cs" />
+    <Compile Include="Interfaces\IProperty.cs" />
+    <Compile Include="Interfaces\IPropertyCollection.cs" />
+    <Compile Include="Interfaces\ITabularEntity.cs" />
+    <Compile Include="Interfaces\Recordset.cs" />
+    <Compile Include="InternalDriver.cs" />
+    <Compile Include="LockTypeEnum.cs" />
+    <Compile Include="MyMetaPluginContext.cs" />
+    <Compile Include="PluginDriver.cs" />
+    <Compile Include="Plugin\ClassFactory.cs" />
+    <Compile Include="Plugin\Column.cs" />
+    <Compile Include="Plugin\Columns.cs" />
+    <Compile Include="Plugin\Database.cs" />
+    <Compile Include="Plugin\Databases.cs" />
+    <Compile Include="Plugin\Domain.cs" />
+    <Compile Include="Plugin\Domains.cs" />
+    <Compile Include="Plugin\ForeignKey.cs" />
+    <Compile Include="Plugin\ForeignKeys.cs" />
+    <Compile Include="Plugin\Index.cs" />
+    <Compile Include="Plugin\Indexes.cs" />
+    <Compile Include="Plugin\Parameter.cs" />
+    <Compile Include="Plugin\Parameters.cs" />
+    <Compile Include="Plugin\Procedure.cs" />
+    <Compile Include="Plugin\Procedures.cs" />
+    <Compile Include="Plugin\ResultColumn.cs" />
+    <Compile Include="Plugin\ResultColumns.cs" />
+    <Compile Include="Plugin\Table.cs" />
+    <Compile Include="Plugin\Tables.cs" />
+    <Compile Include="Plugin\View.cs" />
+    <Compile Include="Plugin\Views.cs" />
+    <Compile Include="Database.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Databases.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="dbRoot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Domain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Domains.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enumerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ForeignKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ForeignKeys.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Index.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Indexes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IClassFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IColumn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IColumns.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IDatabase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IDatabases.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IDomain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IDomains.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IForeignKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IForeignKeys.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IIndex.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IIndexes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\INameValueItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IProcedure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IProcedures.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IProviderType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IProviderTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IResultColumn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IResultColumns.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ITable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ITables.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IViews.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="KeyValueCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MetaObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Procedure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Procedures.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Property.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PropertyCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PropertyCollectionAll.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProviderType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProviderTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResultColumn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResultColumns.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Single.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\ClassFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Column.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Columns.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Database.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Databases.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\DatabaseSpecific.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Domain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Domains.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\ForeignKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\ForeignKeys.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Index.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Indexes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Parameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Parameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Procedure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Procedures.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\ResultColumn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\ResultColumns.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Table.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Tables.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\View.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sql\Views.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tables.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="MetaDataBrowser.ico" />
+    <Content Include="MyMeta.chm" />
+    <None Include="MyMeta.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

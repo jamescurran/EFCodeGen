@@ -1,0 +1,13 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+
+//	Add the following line (uncomment, correcting pluralization of property name) to your DbContext class:
+//	public DbSet<{table.Name}}> {table.Name}s {{get; set;}}
+
+
+namespace {table.Database.Name}.Entities
+{
+
+

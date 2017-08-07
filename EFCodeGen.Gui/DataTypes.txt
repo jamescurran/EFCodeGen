@@ -1,0 +1,7 @@
+﻿smalldatetime=DateTime
+datetime=DateTime
+bit=bool
+varchar=string
+nvarchar=string
+char=string
+nchar=string

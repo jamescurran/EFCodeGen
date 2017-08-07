@@ -1,0 +1,91 @@
+@using System
+@using System.Collections.Generic
+@using System.Linq
+@using MyMeta
+@model EFCodeGen.Gui.Generator.TableModel
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+
+//	Add the following line (uncomment, correcting pluralization of property name) to your DbContext class:
+//	public DbSet<@Model.DePluralize(Model.Table.Name)> @Model.Table.Name {get; set;}
+
+
+namespace @(Model.Table.Database.Name).Entities
+{
+	[Table("@Model.Table.Name")]
+	public partial class @Model.DePluralize(Model.Table.Name)
+	{
+	@{int order = 0; }
+	@foreach (MyMeta.Column col in Model.Table.Columns)
+	{
+		var parts = new List<string>();
+		var columnParts = new List<string>();
+		var comment = new List<string>();
+
+		var dataTypeName = Model.GetDataType(col.DataTypeName);
+
+		if (col.Name != null)
+		{
+			columnParts.Add('"' + col.Name + '"');
+		}
+		if (col.IsInPrimaryKey)
+		{
+			parts.Add("Key");
+			if (Model.Table.ForeignKeys.Count > 1)
+			{
+				++order;
+				columnParts.Add("Order = " + order);
+			}
+		}
+		else 	if (!col.IsNullable)
+		{
+				parts.Add("Required");
+		}
+		else if (dataTypeName != "string")
+		{
+					dataTypeName += '?';
+		}
+						 
+		if (col.CharacterMaxLength >0)
+		{
+			parts.Add(String.Format("MaxLength({0})", col.CharacterMaxLength));
+		}
+		comment.Add(String.Format("DbType=\"{0}\"", col.DataTypeNameComplete));
+		if (columnParts.Any())
+		{
+			var parm = "Column(" + String.Join(", ", columnParts) + ")";
+			parts.Add(parm);
+		}
+		if (parts.Any())
+		{<text>		[@String.Join(", ", parts)]</text>}
+		if (comment.Any())
+		{<text>		// @String.Join(";  ", comment))</text>}
+<text>
+		public @dataTypeName	@col.Name	{get; set;}
+</text>
+	}
+	
+	@foreach (var fk in Model.Table.ForeignKeys)
+	{
+		if (Model.Table.Name == fk.PrimaryTable.Name) // one to many.
+		{
+		<text>[ForeignKey("@String.Join(", ",   fk.PrimaryColumns.Select(c=>c.Name)  )")] </text>
+		<text>public ICollection<@Model.DePluralize(fk.ForeignTable.Name)>		 @fk.ForeignTable.Name {get; set;} 
+			</text>
+
+		}
+		else                                              // many to one.
+		{
+		<text>[ForeignKey("@String.Join(", ",   fk.PrimaryColumns.Select(c=>c.Name)  )")] </text>
+		<text>public @Model.DePluralize(fk.PrimaryTable.Name)		 @Model.DePluralize(fk.PrimaryTable.Name) {get; set;} 
+		</text>			
+		}
+
+	}
+
+	}
+}
+
