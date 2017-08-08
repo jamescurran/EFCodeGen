@@ -186,6 +186,17 @@ namespace MyMeta
 			}
 		}
 
+
+		public string FullName
+		{
+			get { return string.Format("{0}.{1}", Schema, Name); }
+		}
+
+		public string DelimitedName
+		{
+			get { return string.Format("[{0}].[{1}]", Schema, Name); }
+		}
+
 		public string Schema
 		{
 			get

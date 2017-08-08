@@ -113,6 +113,17 @@ namespace MyMeta
 		/// </summary>
 		string Schema { get; }
 
+		/// <summary>
+		/// Name in the format "schema.tablename"
+		/// </summary>
+		string FullName { get; }
+		/// <summary>
+		/// Name in the format "[schema].[tablename]"
+		/// </summary>
+		string DelimitedName { get; }
+
+
+
 		// Properties
 		/// <summary>
 		/// The table type, 'TABLE' if not provided.

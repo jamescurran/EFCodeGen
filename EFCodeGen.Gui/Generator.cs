@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -18,9 +19,7 @@ namespace EFCodeGen.Gui
 {
 	public class Generator
 	{
-		public ITable Table { get; set; }
-
-
+		public string Namespace { get; set; }
 
 		public Generator()
 		{
@@ -63,9 +62,14 @@ namespace EFCodeGen.Gui
 
 			public Func<string, string> DePluralize { get; set; }
 			public Func<string, string> GetDataType { get; set; }
+			public Func<string, string> ToPascalCase { get; set; }
 
 			public ITable Table { get; set; }
 			public StringDictionary DataTypeMap { get; set; }
+			public string Namespace { get; set; }
+
+			public TextInfo TextInfo { get; set; }
+
 		}
 
 
@@ -74,22 +78,14 @@ namespace EFCodeGen.Gui
 
 			try
 			{
-				//var t1 = File.ReadAllText("EntityClass.cshtml");
-				//var result =
-				//	Engine.Razor.RunCompile(t1, "templateKey", null, new TableModel
-				//	{
-				//		Table = table,
-				//		DePluralize = DePluralize,
-				//		GetDataType = GetDataType
-
-				//	});
-
 				Engine.Razor.Run("EntityClass.cshtml", tw, typeof(TableModel), new TableModel
 				{
 					Table = table,
 					DePluralize = DePluralize,
-					GetDataType = GetDataType
-
+					ToPascalCase = ToPascalCase,
+					GetDataType = GetDataType,
+					Namespace = Namespace,
+					TextInfo = CultureInfo.CurrentCulture.TextInfo
 				});
 
 			}
@@ -117,12 +113,44 @@ namespace EFCodeGen.Gui
 
 		}
 
+		static readonly char[] seps = new char[] { '_', ' ', '/', '-' };
+		public static string ToPascalCase(string name)
+		{
+			var sb = new StringBuilder();
+			bool lastSep = true;
+			bool lastUpper = false;
+			foreach (char cc in name)
+			{
+				var c = cc;
+				if (seps.Contains(c))
+					lastSep = true;
+				else
+				{
+					var isUpper	 = Char.IsUpper(c);
+					if (lastSep)
+						c = Char.ToUpperInvariant(c);
+					else if (isUpper && lastUpper)
+						c = Char.ToLowerInvariant(c);
+
+					sb.Append(c);
+					lastSep = false;
+					lastUpper = isUpper;
+				}
+			}
+
+			return sb.ToString();
+		}
+
+
 
 		public static string GetDataType(string dbtype)
 		{
 			return _dataTypeMap[dbtype] ?? dbtype;
 
 		}
+
+
+
 
 
 		static StringDictionary _dataTypeMap;
@@ -150,6 +178,9 @@ namespace EFCodeGen.Gui
 
 	}
 
+
+	// this is taken directly from the RazorEngine docs (plus adding the MyMeta line)
+
 	class MyIReferenceResolver : IReferenceResolver
 	{
 		public string FindLoaded(IEnumerable<string> refs, string find)
@@ -173,6 +204,7 @@ namespace EFCodeGen.Gui
 			yield return CompilerReference.From(FindLoaded(loadedAssemblies, "System.dll"));
 			yield return CompilerReference.From(FindLoaded(loadedAssemblies, "System.Core.dll"));
 			yield return CompilerReference.From(FindLoaded(loadedAssemblies, "RazorEngine.dll"));
+			yield return CompilerReference.From(FindLoaded(loadedAssemblies, "System.Web.Razor.dll"));
 			yield return CompilerReference.From(typeof(MyIReferenceResolver).Assembly); // Assembly
 			yield return CompilerReference.From(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "MyMeta.dll"));
 

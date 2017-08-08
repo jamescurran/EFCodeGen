@@ -47,6 +47,9 @@
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.cbConnectionStrings = new System.Windows.Forms.ListBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.txtNamespace = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -86,6 +89,7 @@
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "Open_6529_24.bmp");
+			this.imageList1.Images.SetKeyName(1, "icons8-Code-64.png");
 			// 
 			// openFileDialog1
 			// 
@@ -94,7 +98,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(13, 57);
+			this.label2.Location = new System.Drawing.Point(12, 91);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(124, 13);
 			this.label2.TabIndex = 3;
@@ -102,23 +106,25 @@
 			// 
 			// lbTables
 			// 
-			this.lbTables.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+			this.lbTables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.lbTables.DisplayMember = "FullName";
 			this.lbTables.FormattingEnabled = true;
-			this.lbTables.Location = new System.Drawing.Point(246, 81);
+			this.lbTables.Location = new System.Drawing.Point(246, 107);
 			this.lbTables.Name = "lbTables";
-			this.lbTables.Size = new System.Drawing.Size(165, 303);
+			this.lbTables.Size = new System.Drawing.Size(165, 277);
 			this.lbTables.TabIndex = 5;
 			this.lbTables.SelectedIndexChanged += new System.EventHandler(this.lbTables_SelectedIndexChanged);
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(152, 57);
+			this.label3.Location = new System.Drawing.Point(243, 91);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(35, 13);
+			this.label3.Size = new System.Drawing.Size(70, 13);
 			this.label3.TabIndex = 6;
-			this.label3.Text = "label3";
+			this.label3.Text = "Select Table:";
 			// 
 			// label4
 			// 
@@ -145,7 +151,7 @@
 			this.btnGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnGo.Enabled = false;
 			this.btnGo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnGo.Location = new System.Drawing.Point(426, 93);
+			this.btnGo.Location = new System.Drawing.Point(429, 174);
 			this.btnGo.Name = "btnGo";
 			this.btnGo.Size = new System.Drawing.Size(86, 80);
 			this.btnGo.TabIndex = 9;
@@ -155,7 +161,7 @@
 			// 
 			// btnOutput
 			// 
-			this.btnOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnOutput.ImageIndex = 0;
 			this.btnOutput.ImageList = this.imageList1;
 			this.btnOutput.Location = new System.Drawing.Point(506, 423);
@@ -167,7 +173,7 @@
 			// 
 			// txtOutput
 			// 
-			this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtOutput.Location = new System.Drawing.Point(16, 427);
 			this.txtOutput.Name = "txtOutput";
@@ -176,6 +182,7 @@
 			// 
 			// label5
 			// 
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label5.AutoSize = true;
 			this.label5.Location = new System.Drawing.Point(16, 410);
 			this.label5.Name = "label5";
@@ -202,17 +209,49 @@
 			// cbConnectionStrings
 			// 
 			this.cbConnectionStrings.FormattingEnabled = true;
-			this.cbConnectionStrings.Location = new System.Drawing.Point(16, 74);
+			this.cbConnectionStrings.Location = new System.Drawing.Point(13, 107);
 			this.cbConnectionStrings.Name = "cbConnectionStrings";
 			this.cbConnectionStrings.Size = new System.Drawing.Size(194, 147);
 			this.cbConnectionStrings.TabIndex = 14;
 			this.cbConnectionStrings.SelectedIndexChanged += new System.EventHandler(this.cbConnectionStrings_SelectedIndexChanged);
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(18, 61);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(65, 13);
+			this.label6.TabIndex = 15;
+			this.label6.Text = "namespace ";
+			// 
+			// txtNamespace
+			// 
+			this.txtNamespace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.txtNamespace.Location = new System.Drawing.Point(85, 57);
+			this.txtNamespace.Name = "txtNamespace";
+			this.txtNamespace.Size = new System.Drawing.Size(340, 20);
+			this.txtNamespace.TabIndex = 16;
+			this.txtNamespace.TextChanged += new System.EventHandler(this.txtNamespace_TextChanged);
+			// 
+			// label7
+			// 
+			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(429, 63);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(44, 13);
+			this.label7.TabIndex = 17;
+			this.label7.Text = ".Entities";
 			// 
 			// frmCodeGen
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(539, 471);
+			this.Controls.Add(this.label7);
+			this.Controls.Add(this.txtNamespace);
+			this.Controls.Add(this.label6);
 			this.Controls.Add(this.cbConnectionStrings);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.btnOutput);
@@ -227,8 +266,10 @@
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.txtAppConfig);
 			this.Controls.Add(this.label1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "frmCodeGen";
 			this.Text = "EF Code-First Generator";
+			this.Load += new System.EventHandler(this.frmCodeGen_Load);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -255,6 +296,9 @@
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
 		private System.Windows.Forms.ListBox cbConnectionStrings;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TextBox txtNamespace;
+		private System.Windows.Forms.Label label7;
 	}
 }
 

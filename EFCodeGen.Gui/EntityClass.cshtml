@@ -8,15 +8,20 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+@{
+	var hasdate = Model.Table.Columns.Any(c => c.Name == "AsOfDate") ? ": IHasAsOfDate" : String.Empty;
+	var collectionName = Model.TextInfo.ToTitleCase(Model.Table.Name);
+	var objectName = Model.DePluralize(collectionName);
+}
 
-//	Add the following line (uncomment, correcting pluralization of property name) to your DbContext class:
-//	public DbSet<@Model.DePluralize(Model.Table.Name)> @Model.Table.Name {get; set;}
+//	Add the following line (uncommented) to your DbContext class:
+//	public DbSet<@objectName> @collectionName {get; set;}
 
 
-namespace @(Model.Table.Database.Name).Entities
+namespace @(Model.Namespace).Entities
 {
-	[Table("@Model.Table.Name")]
-	public partial class @Model.DePluralize(Model.Table.Name)
+	[Table("@Model.Table.DelimitedName")]
+	public partial class @objectName @hasdate
 	{
 	@{int order = 0; }
 	@foreach (MyMeta.Column col in Model.Table.Columns)
@@ -34,22 +39,22 @@ namespace @(Model.Table.Database.Name).Entities
 		if (col.IsInPrimaryKey)
 		{
 			parts.Add("Key");
-			if (Model.Table.ForeignKeys.Count > 1)
+			if (Model.Table.PrimaryKeys.Count > 1)
 			{
 				++order;
 				columnParts.Add("Order = " + order);
 			}
 		}
-		else 	if (!col.IsNullable)
+		else    if (!col.IsNullable)
 		{
-				parts.Add("Required");
+			parts.Add("Required");
 		}
 		else if (dataTypeName != "string")
 		{
-					dataTypeName += '?';
+			dataTypeName += '?';
 		}
-						 
-		if (col.CharacterMaxLength >0)
+
+		if (dataTypeName == "string" && col.CharacterMaxLength >0)      // dates also have CharacterMaxLength > 0
 		{
 			parts.Add(String.Format("MaxLength({0})", col.CharacterMaxLength));
 		}
@@ -64,7 +69,7 @@ namespace @(Model.Table.Database.Name).Entities
 		if (comment.Any())
 		{<text>		// @String.Join(";  ", comment))</text>}
 <text>
-		public @dataTypeName	@col.Name	{get; set;}
+		public @dataTypeName	@Model.ToPascalCase(col.Name)	{get; set;}
 </text>
 	}
 	
@@ -72,15 +77,19 @@ namespace @(Model.Table.Database.Name).Entities
 	{
 		if (Model.Table.Name == fk.PrimaryTable.Name) // one to many.
 		{
-		<text>[ForeignKey("@String.Join(", ",   fk.PrimaryColumns.Select(c=>c.Name)  )")] </text>
-		<text>public ICollection<@Model.DePluralize(fk.ForeignTable.Name)>		 @fk.ForeignTable.Name {get; set;} 
+			var collectionFK = Model.ToPascalCase(fk.ForeignTable.Name);
+			var objectFK = Model.DePluralize(collectionFK);
+		<text>[InverseProperty("@String.Join(", ",   fk.ForeignColumns.Select(c=>c.Name)  )")] </text>
+		<text>public ICollection<@objectFK>		 @collectionFK {get; set;} 
 			</text>
 
 		}
 		else                                              // many to one.
 		{
-		<text>[ForeignKey("@String.Join(", ",   fk.PrimaryColumns.Select(c=>c.Name)  )")] </text>
-		<text>public @Model.DePluralize(fk.PrimaryTable.Name)		 @Model.DePluralize(fk.PrimaryTable.Name) {get; set;} 
+			var collectionFK = Model.ToPascalCase(fk.PrimaryTable.Name);
+			var objectFK = Model.DePluralize(collectionFK);
+		<text>[ForeignKey("@String.Join(", ",   fk.ForeignColumns.Select(c=>c.Name)  )")] </text>
+		<text>public @objectFK		 @objectFK {get; set;} 
 		</text>			
 		}
 
