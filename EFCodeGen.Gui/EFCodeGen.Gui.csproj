@@ -74,6 +74,12 @@
     <Compile Include="frmCodeGen.Designer.cs">
       <DependentUpon>frmCodeGen.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmConfirmOverwrite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConfirmOverwrite.Designer.cs">
+      <DependentUpon>frmConfirmOverwrite.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmError.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmCodeGen.resx">
       <DependentUpon>frmCodeGen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConfirmOverwrite.resx">
+      <DependentUpon>frmConfirmOverwrite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmError.resx">
       <DependentUpon>frmError.cs</DependentUpon>

@@ -44,6 +44,7 @@ namespace EFCodeGen.Gui
 			txtNamespace.Text = _config.AppSettings.Settings["Namespace"]?.Value;
 			toolStripStatusLabel1.Text = "";
 
+			toolStripStatusLabel1.BackColor = Color.FromKnownColor(KnownColor.Control);
 
 		}
 
@@ -139,7 +140,6 @@ namespace EFCodeGen.Gui
 
 			_dbroot = new dbRoot();
 			_dbroot.Connect("SQL", "Provider=SQLOLEDB;" + _connectionstring);
-			var saveColor = toolStripStatusLabel1.BackColor;
 
 			if (_dbroot.Databases == null)
 			{
@@ -152,7 +152,7 @@ namespace EFCodeGen.Gui
 			{
 				Cursor.Current = Cursors.WaitCursor;
 				toolStripStatusLabel1.Text = "";
-				toolStripStatusLabel1.BackColor = saveColor;
+				toolStripStatusLabel1.BackColor = Color.FromKnownColor(KnownColor.Control);
 
 				lbTables.Items.AddRange(_dbroot.DefaultDatabase.Tables.ToArray());
 				Cursor.Current = Cursors.Default;
@@ -162,17 +162,21 @@ namespace EFCodeGen.Gui
 
 		private void lbTables_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			toolStripStatusLabel1.BackColor = Color.FromKnownColor(KnownColor.Control);
+			toolStripStatusLabel1.Text = "";
 			btnGo.Enabled = Directory.Exists(txtOutput.Text);
-//			var prod = dbroot.DefaultDatabase.Tables["Productions"];
-
 		}
 
 		private void txtConnectionstring_TextChanged(object sender, EventArgs e)
 		{
+			toolStripStatusLabel1.BackColor = Color.FromKnownColor(KnownColor.Control);
+			toolStripStatusLabel1.Text = "";
+
 			btnGo.Enabled = false;
 			_connectionstring = txtConnectionstring.Text;
 			FillTablesListbox();
 		}
+#if false
 
 		private async void btnGo_Click(object sender, EventArgs e)
 		{
@@ -199,7 +203,60 @@ namespace EFCodeGen.Gui
 				toolStripStatusLabel1.Text = table.FullName +" Complete.";
 			}
 		}
+#else
+		private async void btnGo_Click(object sender, EventArgs e)
+		{
+			toolStripStatusLabel1.BackColor = Color.FromKnownColor(KnownColor.Control);
+			toolStripStatusLabel1.Text = "";
 
+			var overwrite = new List<ITable>();
+			var generate = new List<ITable>();
+
+			foreach (ITable table in lbTables.SelectedItems)
+			{
+				var filename = table.Name + ".cs";
+				var pathname = Path.Combine(txtOutput.Text, filename);
+				if (File.Exists(pathname))
+					overwrite.Add(table);
+				else
+					generate.Add(table);
+			}
+
+			if (overwrite.Any())
+			{
+				var frm = new frmConfirmOverwrite(overwrite, generate);
+				var result = frm.ShowDialog();
+				switch (result)
+				{
+						case DialogResult.Yes:		// BuildAll:
+							generate.AddRange(overwrite);
+							break;
+						case DialogResult.Cancel:	// BuildNone
+							generate.Clear();
+							break;
+						case DialogResult.No:		// Build Some
+							break;
+				}
+				
+			}
+			toolStripStatusLabel1.BackColor = Color.CadetBlue;
+			foreach (ITable table in generate)
+			{
+				var filename = table.Name + ".cs";
+				var pathname = Path.Combine(txtOutput.Text, filename);
+				toolStripStatusLabel1.Text = "Building " + table.FullName;
+
+				Cursor.Current = Cursors.WaitCursor;
+
+				using (var sw = File.CreateText(pathname))
+				{
+					await Task.Run(() => Generator.WriteEntityClass(table, sw));
+				}
+				Cursor.Current = Cursors.Default;
+				toolStripStatusLabel1.Text = table.FullName + " Complete.";
+			}
+		}
+#endif
 		private void btnOutput_Click(object sender, EventArgs e)
 		{
 			CommonOpenFileDialog dialog = new CommonOpenFileDialog();

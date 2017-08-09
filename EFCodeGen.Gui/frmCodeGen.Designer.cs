@@ -113,6 +113,7 @@
 			this.lbTables.FormattingEnabled = true;
 			this.lbTables.Location = new System.Drawing.Point(246, 107);
 			this.lbTables.Name = "lbTables";
+			this.lbTables.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
 			this.lbTables.Size = new System.Drawing.Size(165, 277);
 			this.lbTables.TabIndex = 5;
 			this.lbTables.SelectedIndexChanged += new System.EventHandler(this.lbTables_SelectedIndexChanged);

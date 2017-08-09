@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 @{
 	var hasdate = Model.Table.Columns.Any(c => c.Name == "AsOfDate") ? ": IHasAsOfDate" : String.Empty;
-	var collectionName = Model.TextInfo.ToTitleCase(Model.Table.Name);
+	var collectionName = Model.ToPascalCase(Model.Table.Name);
 	var objectName = Model.DePluralize(collectionName);
 }
 

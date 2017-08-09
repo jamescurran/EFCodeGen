@@ -37,36 +37,41 @@ namespace EFCodeGen.Gui
 					EncodedStringFactory = new RawStringFactory(),
 					Debug = true,
 					ReferenceResolver = new MyIReferenceResolver()
-			};
-
+				};
 
 				var service = RazorEngineService.Create(config);
 				Engine.Razor = service;
-
-
-				var t1 = File.ReadAllText("EntityClass.cshtml");
-				Engine.Razor.Compile(t1, "EntityClass.cshtml", typeof(TableModel));
 			});
 
 			var taskData = Task.Run(() => LoadDataTypes());
 
+			await taskService;
 
+			var taskCompile1 = Task.Run(() => LoadAndCompile("EntityClass.cshtml"));
 
 			await taskData;
-			await taskService;
+			await taskCompile1;
+		}
+
+
+		private void LoadAndCompile(string filename)
+		{
+			var t1 = File.ReadAllText(filename);
+			Engine.Razor.Compile(t1, filename, typeof(TableModel));
 		}
 
 
 		public class TableModel
 		{
+			public ITable Table { get; set; }
+
+			public StringDictionary DataTypeMap { get; set; }
+			public string Namespace { get; set; }
 
 			public Func<string, string> DePluralize { get; set; }
 			public Func<string, string> GetDataType { get; set; }
 			public Func<string, string> ToPascalCase { get; set; }
 
-			public ITable Table { get; set; }
-			public StringDictionary DataTypeMap { get; set; }
-			public string Namespace { get; set; }
 
 			public TextInfo TextInfo { get; set; }
 
@@ -75,18 +80,19 @@ namespace EFCodeGen.Gui
 
 		public void WriteEntityClass(ITable table, TextWriter tw)
 		{
-
 			try
 			{
-				Engine.Razor.Run("EntityClass.cshtml", tw, typeof(TableModel), new TableModel
-				{
-					Table = table,
-					DePluralize = DePluralize,
-					ToPascalCase = ToPascalCase,
-					GetDataType = GetDataType,
-					Namespace = Namespace,
-					TextInfo = CultureInfo.CurrentCulture.TextInfo
-				});
+
+				Engine.Razor.Run("EntityClass.cshtml", tw, typeof(TableModel), 
+						new TableModel
+						{
+							Table = table,
+							DePluralize = DePluralize,
+							ToPascalCase = ToPascalCase,
+							GetDataType = GetDataType,
+							Namespace = Namespace,
+							TextInfo = CultureInfo.CurrentCulture.TextInfo
+						});
 
 			}
 			catch (Exception e)
@@ -95,10 +101,6 @@ namespace EFCodeGen.Gui
 				frm.Message = e.Message;
 				frm.Show();
 			}
-
-
-
-
 		}
 
 		static string DePluralize(string plural)
@@ -110,7 +112,6 @@ namespace EFCodeGen.Gui
 				return plural.Substring(0, plural.Length - 1);
 
 			return plural;
-
 		}
 
 		static readonly char[] seps = new char[] { '_', ' ', '/', '-' };
