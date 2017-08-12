@@ -101,7 +101,7 @@
 			this.label2.Location = new System.Drawing.Point(12, 91);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(124, 13);
-			this.label2.TabIndex = 3;
+			this.label2.TabIndex = 6;
 			this.label2.Text = "Select Connection String";
 			// 
 			// lbTables
@@ -115,7 +115,7 @@
 			this.lbTables.Name = "lbTables";
 			this.lbTables.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
 			this.lbTables.Size = new System.Drawing.Size(165, 277);
-			this.lbTables.TabIndex = 5;
+			this.lbTables.TabIndex = 11;
 			this.lbTables.SelectedIndexChanged += new System.EventHandler(this.lbTables_SelectedIndexChanged);
 			// 
 			// label3
@@ -124,7 +124,7 @@
 			this.label3.Location = new System.Drawing.Point(243, 91);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(70, 13);
-			this.label3.TabIndex = 6;
+			this.label3.TabIndex = 10;
 			this.label3.Text = "Select Table:";
 			// 
 			// label4
@@ -134,7 +134,7 @@
 			this.label4.Location = new System.Drawing.Point(16, 373);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(91, 13);
-			this.label4.TabIndex = 7;
+			this.label4.TabIndex = 8;
 			this.label4.Text = "Connection String";
 			// 
 			// txtConnectionstring
@@ -144,7 +144,7 @@
 			this.txtConnectionstring.Location = new System.Drawing.Point(16, 390);
 			this.txtConnectionstring.Name = "txtConnectionstring";
 			this.txtConnectionstring.Size = new System.Drawing.Size(511, 20);
-			this.txtConnectionstring.TabIndex = 8;
+			this.txtConnectionstring.TabIndex = 9;
 			this.txtConnectionstring.TextChanged += new System.EventHandler(this.txtConnectionstring_TextChanged);
 			// 
 			// btnGo
@@ -155,7 +155,7 @@
 			this.btnGo.Location = new System.Drawing.Point(429, 174);
 			this.btnGo.Name = "btnGo";
 			this.btnGo.Size = new System.Drawing.Size(86, 80);
-			this.btnGo.TabIndex = 9;
+			this.btnGo.TabIndex = 15;
 			this.btnGo.Text = "Go!";
 			this.btnGo.UseVisualStyleBackColor = true;
 			this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
@@ -168,7 +168,7 @@
 			this.btnOutput.Location = new System.Drawing.Point(506, 423);
 			this.btnOutput.Name = "btnOutput";
 			this.btnOutput.Size = new System.Drawing.Size(24, 23);
-			this.btnOutput.TabIndex = 12;
+			this.btnOutput.TabIndex = 14;
 			this.btnOutput.UseVisualStyleBackColor = true;
 			this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click);
 			// 
@@ -179,7 +179,7 @@
 			this.txtOutput.Location = new System.Drawing.Point(16, 427);
 			this.txtOutput.Name = "txtOutput";
 			this.txtOutput.Size = new System.Drawing.Size(484, 20);
-			this.txtOutput.TabIndex = 11;
+			this.txtOutput.TabIndex = 13;
 			// 
 			// label5
 			// 
@@ -188,7 +188,7 @@
 			this.label5.Location = new System.Drawing.Point(16, 410);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(71, 13);
-			this.label5.TabIndex = 10;
+			this.label5.TabIndex = 12;
 			this.label5.Text = "Output Folder";
 			// 
 			// statusStrip1
@@ -198,7 +198,7 @@
 			this.statusStrip1.Location = new System.Drawing.Point(0, 449);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(539, 22);
-			this.statusStrip1.TabIndex = 13;
+			this.statusStrip1.TabIndex = 16;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
 			// toolStripStatusLabel1
@@ -213,7 +213,7 @@
 			this.cbConnectionStrings.Location = new System.Drawing.Point(13, 107);
 			this.cbConnectionStrings.Name = "cbConnectionStrings";
 			this.cbConnectionStrings.Size = new System.Drawing.Size(194, 147);
-			this.cbConnectionStrings.TabIndex = 14;
+			this.cbConnectionStrings.TabIndex = 7;
 			this.cbConnectionStrings.SelectedIndexChanged += new System.EventHandler(this.cbConnectionStrings_SelectedIndexChanged);
 			// 
 			// label6
@@ -222,7 +222,7 @@
 			this.label6.Location = new System.Drawing.Point(18, 61);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(65, 13);
-			this.label6.TabIndex = 15;
+			this.label6.TabIndex = 3;
 			this.label6.Text = "namespace ";
 			// 
 			// txtNamespace
@@ -232,7 +232,7 @@
 			this.txtNamespace.Location = new System.Drawing.Point(85, 57);
 			this.txtNamespace.Name = "txtNamespace";
 			this.txtNamespace.Size = new System.Drawing.Size(340, 20);
-			this.txtNamespace.TabIndex = 16;
+			this.txtNamespace.TabIndex = 4;
 			this.txtNamespace.TextChanged += new System.EventHandler(this.txtNamespace_TextChanged);
 			// 
 			// label7
@@ -242,7 +242,7 @@
 			this.label7.Location = new System.Drawing.Point(429, 63);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(44, 13);
-			this.label7.TabIndex = 17;
+			this.label7.TabIndex = 5;
 			this.label7.Text = ".Entities";
 			// 
 			// frmCodeGen

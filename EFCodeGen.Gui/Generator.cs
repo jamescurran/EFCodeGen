@@ -138,6 +138,8 @@ namespace EFCodeGen.Gui
 					lastUpper = isUpper;
 				}
 			}
+			if (Char.IsDigit(sb[0]))
+				sb.Insert(0, '_');
 
 			return sb.ToString();
 		}

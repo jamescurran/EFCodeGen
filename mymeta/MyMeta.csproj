@@ -369,6 +369,7 @@
     <Content Include="MetaDataBrowser.ico" />
     <Content Include="MyMeta.chm" />
     <None Include="MyMeta.snk" />
+    <None Include="Readme.md" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
